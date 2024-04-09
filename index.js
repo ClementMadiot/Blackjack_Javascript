@@ -29,7 +29,7 @@ function renderGame() {
     sumEl.textContent = 'Sum: ' + sum
     isAlive = false
   }
-  console.log(messageEl.textContent)
+  console.log(message)
 }
 
 function newCard() {
