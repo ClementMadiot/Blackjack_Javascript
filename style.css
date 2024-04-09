@@ -1,0 +1,38 @@
+body {
+  background: radial-gradient(circle at -1% 57.5%, rgb(19, 170, 82) 0%, rgb(0, 102, 43) 90%);
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-size: 100% 200%;
+}
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+h1{
+  font-size: 38px;
+  color: goldenrod;
+}
+p{
+  font-weight: bold;
+  font-size: 20px;
+}
+#message-el{
+  font-style: italic;
+}
+button{
+  background-color: goldenrod;
+  border-color: goldenrod;
+  text-transform: uppercase;
+  color: darkgreen;
+  margin-bottom: 5px;
+  padding: 7px 3rem;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgba(0, 100, 0, 0.824);;
+  color: goldenrod;
+}
