@@ -1,6 +1,7 @@
 let firstCard = 11
 let secondCard = 10
 let sum = firstCard + secondCard
+
 let blackjack = false
 let isAlive = true
 let message = ''
