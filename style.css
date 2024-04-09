@@ -3,13 +3,9 @@ body {
   color: white;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   background-size: 100% 200%;
+  text-align: center;
 }
-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+
 h1{
   font-size: 38px;
   color: goldenrod;
@@ -17,9 +13,13 @@ h1{
 p{
   font-weight: bold;
   font-size: 20px;
+  margin: 3rem 0;
 }
 #message-el{
   font-style: italic;
+}
+article{
+text-align: center;
 }
 button{
   background-color: goldenrod;
@@ -30,9 +30,12 @@ button{
   padding: 7px 3rem;
   font-weight: bold;
   font-size: 20px;
+  border-radius: 2px;
   cursor: pointer;
+  width: 280px;
 }
 button:hover {
   background-color: rgba(0, 100, 0, 0.824);;
   color: goldenrod;
+  border-color: goldenrod;
 }
