@@ -2,19 +2,26 @@
 const messageEl = document.getElementById('message-el')
 const sumEl = document.getElementById('sum-el')
 const cardEl = document.getElementById('card-el')
-const playerEl = document.getElementById('player-el');
+const playerEl = document.getElementById('player-el')
+const casinoCardEl = document.getElementById('casinoCard-el')
+const casinoSumEl = document.getElementById('casinoSum-el')
 ///Cards
 let cards = []
+let casinoCards = []
 let sum = 0
-// console.log(sum)
+let casinoSum = 0
 ///Rules
 let blackjack = false
 let isAlive = false
 let message = ''
-
+///Object
+let player = {
+  name: 'Score :',
+  chips: 0,
+}
+playerEl.textContent = player.name + ' $' + player.chips
 
 ///Random card
-
 function getRandomCard() {
   let randomNumber = Math.floor(Math.random() * 13) + 1
   if (randomNumber === 1) {
@@ -32,28 +39,48 @@ function startGame() {
   let secondCard = getRandomCard()
   cards = [firstCard, secondCard]
   sum = firstCard + secondCard
-  console.log(cards)
+
+  let casinoCard1 = getRandomCard()
+  let casinoCard2 = getRandomCard()
+  casinoCards = [casinoCard1, casinoCard2]
+  casinoSum = casinoCard1 + casinoCard2
+  casinoGame()
   renderGame()
 }
-
+function casinoGame() {
+  //casino hand
+  casinoCardEl.textcontent = 'Bank :'
+  for (let i = 0; i < casinoCards.length; i++) {
+    casinoCardEl.textContent += ' ' + casinoCards[i]
+  }
+  casinoSumEl.textContent += ' ' + casinoSum
+  if (casinoSum === 21) {
+    isAlive = false
+  }
+}
 /// Display
 function renderGame() {
+  //player hand
   cardEl.textContent = 'Cards :'
   for (let i = 0; i < cards.length; i++) {
     cardEl.textContent += ' ' + cards[i]
   }
   sumEl.textContent = 'Sum : ' + sum
 
+  //player condition
   if (sum <= 20) {
     messageEl.textContent = 'Do you want an other card ?'
   } else if (sum === 21) {
     messageEl.textContent = "Congralutation ! You've a blackjack !"
     blackjack = true
+    player.chips += 100
+    playerEl.textContent = player.name + ' $' + player.chips
   } else {
     messageEl.textContent = "You're out of the game !"
     isAlive = false
+    player.chips -= 10
+    playerEl.textContent = player.name + ' $' + player.chips
   }
-  // console.log(message)
 }
 
 function newCard() {
@@ -63,15 +90,30 @@ function newCard() {
     cards.push(card)
   }
   renderGame()
-  
 }
 
-// let hasSolvedChallenge = false
-// let hasHintsLeft = true
+function result() {
+  if (casinoSum === sum) {
+    player.chips += 0
+  } else if (casinoSum > sum) {
+    player.chips -= 10
+    playerEl.textContent = player.name + ' $' + player.chips
+  } else {
+    player.chips += 10
+    playerEl.textContent = player.name + ' $' + player.chips
+  }
+  newGame()
+}
 
-// if (hasSolvedChallenge === true || hasHintsLeft === true) {
-//   showSolution()
-// }
-// function showSolution() {
-//   console.log('showing solution')
-// }
+function newGame() {
+  isAlive = false
+  cards = []
+  casinoCards = []
+  sum = 0
+  casinoSum = 0
+  sumEl.textContent = 'Sum :'
+  cardEl.textContent = 'Cards :'
+  casinoSumEl.textContent = 'Sum :'
+  casinoCardEl.textContent = 'Bank :'
+  messageEl.textContent = 'Want to play again ?'
+}
