@@ -2,26 +2,37 @@
 const messageEl = document.getElementById('message-el')
 const sumEl = document.getElementById('sum-el')
 const cardEl = document.getElementById('card-el')
+const playerEl = document.getElementById('player-el');
 ///Cards
-let firstCard = getRandomCard()
-let secondCard = getRandomCard()
-let cards = [firstCard, secondCard]
-let sum = firstCard + secondCard
-
+let cards = []
+let sum = 0
+// console.log(sum)
 ///Rules
 let blackjack = false
-let isAlive = true
+let isAlive = false
 let message = ''
+
 
 ///Random card
 
 function getRandomCard() {
-  let randomNumber = Math.floor(Math.random() * 11) + 1
+  let randomNumber = Math.floor(Math.random() * 13) + 1
+  if (randomNumber === 1) {
+    return 11
+  } else if (randomNumber > 10) {
+    return 10
+  }
   return randomNumber
 }
 
 /// Onclick
 function startGame() {
+  isAlive = true
+  let firstCard = getRandomCard()
+  let secondCard = getRandomCard()
+  cards = [firstCard, secondCard]
+  sum = firstCard + secondCard
+  console.log(cards)
   renderGame()
 }
 
@@ -46,10 +57,21 @@ function renderGame() {
 }
 
 function newCard() {
-  console.log('Drawing a new card from the deck')
-  let card = getRandomCard()
-  sum += card
-  cards.push(card)
-
+  if (isAlive === true && blackjack === false) {
+    let card = getRandomCard()
+    sum += card
+    cards.push(card)
+  }
   renderGame()
+  
 }
+
+// let hasSolvedChallenge = false
+// let hasHintsLeft = true
+
+// if (hasSolvedChallenge === true || hasHintsLeft === true) {
+//   showSolution()
+// }
+// function showSolution() {
+//   console.log('showing solution')
+// }
