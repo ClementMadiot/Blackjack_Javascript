@@ -54,9 +54,6 @@ function casinoGame() {
     casinoCardEl.textContent += ' ' + casinoCards[i]
   }
   casinoSumEl.textContent += ' ' + casinoSum
-  if (casinoSum === 21) {
-    isAlive = false
-  }
 }
 /// Display
 function renderGame() {
@@ -88,6 +85,9 @@ function newCard() {
     let card = getRandomCard()
     sum += card
     cards.push(card)
+    let newCasionoCard = getRandomCard()
+    casinoSum += newCasionoCard
+    casinoCards.push(newCasionoCard)
   }
   renderGame()
 }
