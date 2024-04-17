@@ -5,10 +5,25 @@ const inputBtn = document.getElementById('inputBtn')
 const ulEl = document.getElementById('ulEl')
 let myLeads = []
 
+let leadFromLocalStorage = JSON.parse(localStorage.getItem("myLeads", myLeads))
+
+if(leadFromLocalStorage){
+  myLeads = leadFromLocalStorage
+  renderLeads()
+} else {
+  console.log("storage is empty")
+}
+
+
+
+///Evenement onClick
 inputBtn.addEventListener('click', (e) => {
   myLeads.push(inputEl.value)
   inputEl.value = ''
+  localStorage.setItem("myLeads", JSON.stringify(myLeads)) 
+  
   renderLeads()
+
 })
 
 function renderLeads() {
@@ -18,7 +33,7 @@ function renderLeads() {
     listItem += `<li> 
     <a href='${myLeads[i]}' target='_blank'>${myLeads[i]} </a>
     </li> `
-    console.log(listItem)
+    // console.log(listItem)
   }
 
   ulEl.innerHTML = listItem
