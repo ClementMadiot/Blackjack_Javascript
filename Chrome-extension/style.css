@@ -69,6 +69,10 @@ button {
   transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
   border: 0;
 }
+#deleteBtn{
+  background: var(--letter);
+  color: rgb(217, 217, 217);
+}
 
 button:hover {
 
@@ -76,6 +80,7 @@ button:hover {
   border-image-slice: 1;
   box-shadow: var(--primary) 0 0 0 1.7px, var(--secondary) 0 0 0 1px;
 }
+
 
 /* list style  */
 ul{
