@@ -1,12 +1,16 @@
 {
   "manifest_version": 3,
-  "version": "1",
   "name": "Leads tracker",
-  "action" :{
+  "version": "1",
+  "description": "Can be use to save link, It will be stock on the click 'Save Tab' You can also double click to delete the link",
+  "action": {
     "default_popup": "index.html",
-    "default_icon": "logo.jpg"
+    "default_title": "Leads Tracker",
+    "default_icon": {
+      "16": "image/logo16.png",
+      "48": "image/logo.png",
+      "128": "image/logo128.png"
+    }
   },
-  "permissions": [
-    "tabs"
-  ]
+  "permissions": ["tabs"]
 }
