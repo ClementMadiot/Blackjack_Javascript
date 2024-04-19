@@ -13,30 +13,25 @@ if (leadFromLocalStorage) {
   render(myLeads)
 }
 
-const tabs = [{ url: 'https://www.google.com/' }]
-
-tabBtn.addEventListener('click', () => {
-
-
-  let tabValue = tabs[0].url
-  myLeads.push(tabValue)
-  tabValue = ''
-  localStorage.setItem('myLeads', JSON.stringify(myLeads))
-  render(myLeads)
+tabBtn.addEventListener('click', function () {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    myLeads.push(tabs[0].url)
+    localStorage.setItem('myLeads', JSON.stringify(myLeads))
+    render(myLeads)
+  })
 })
 
 function render(leads) {
   let listItem = ''
   for (let i = 0; i < leads.length; i++) {
-    listItem += `<li> 
+    listItem += `<li>  
     <a href='${leads[i]}' target='_blank'>${leads[i]} </a>
     </li> `
-    // console.log(listItem)
   }
   ulEl.innerHTML = listItem
 }
 ///Evenement onClick
-inputBtn.addEventListener('click', (e) => {
+inputBtn.addEventListener('click', function () {
   let inputValue = inputEl.value
   if (inputValue) {
     myLeads.push(inputValue)
@@ -46,7 +41,7 @@ inputBtn.addEventListener('click', (e) => {
   }
 })
 
-deleteBtn.addEventListener('click', () => {
+deleteBtn.addEventListener('click', function () {
   localStorage.clear()
   myLeads = []
   render(myLeads)
