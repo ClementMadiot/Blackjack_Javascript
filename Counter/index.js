@@ -1,5 +1,5 @@
-const saveEl = document.getElementById('save-el')
-const countEl = document.getElementById('count-el')
+const saveEl = document.getElementById('saveEl')
+const countEl = document.getElementById('countEl')
 // const resetEl = document.getElementById('reset-el');
 
 // People entered
