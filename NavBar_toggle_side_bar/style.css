@@ -159,39 +159,42 @@ nav {
     border-color: transparent;
     transition: var(--transition);
     cursor: pointer;
-  }
-  .nav-toggle:hover {
-    color: var(--clr-primary-1);
-    transform: rotate(90deg);
+    &:hover {
+      color: var(--clr-primary-1);
+      transform: rotate(90deg);
+    }
   }
   .logo {
     height: 40px;
   }
-  .links a {
-    color: var(--clr-grey-3);
-    font-size: 1rem;
-    text-transform: capitalize;
-    letter-spacing: var(--spacing);
-    display: block;
-    padding: 0.5rem 1rem;
+  /* link  */
+
+  .links {
+    height: 0;
+    overflow: hidden;
     transition: var(--transition);
+    & a {
+      color: var(--clr-grey-3);
+      font-size: 1rem;
+      text-transform: capitalize;
+      letter-spacing: var(--spacing);
+      display: block;
+      padding: 0.5rem 1rem;
+      transition: var(--transition);
+      &:hover {
+        background: var(--clr-primary-8);
+        color: var(--clr-primary-5);
+        padding-left: 1.5rem;
+      }
+    }
   }
-  .links a:hover {
-    background: var(--clr-primary-8);
-    color: var(--clr-primary-5);
-    padding-left: 1.5rem;
+  .show-links {
+    height: 10rem;
   }
-}
-.social-icons {
-  display: none;
-}
-.links {
-  height: 0;
-  overflow: hidden;
-  transition: var(--transition);
-}
-.show-links {
-  height: 10rem;
+  /* icon  */
+  .social-icons {
+    display: none;
+  }
 }
 @media screen and (min-width: 800px) {
   .nav-center {
@@ -277,7 +280,7 @@ Sidebar
   row-gap: 1rem;
   box-shadow: var(--clr-red-dark);
   transition: var(--transition);
-  /* transform: translate(-100%); */
+  transform: translate(-100%);
 
   .sidebar-header {
     display: flex;

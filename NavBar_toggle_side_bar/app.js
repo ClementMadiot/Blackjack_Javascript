@@ -1,3 +1,5 @@
+//! NAV BAR
+
 // classList - shows/gets all classes
 // contains - checks classList for specific class
 // add - add class
@@ -17,3 +19,5 @@ navToggle.addEventListener('click', (e) => {
   // }
   links.classList.toggle('show-links')
 })
+
+
