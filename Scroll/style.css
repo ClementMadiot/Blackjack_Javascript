@@ -213,9 +213,10 @@ nav {
 .fixed-nav .links a:hover {
   color: var(--clr-secondary);
 }
-/* .fixed-nav .links-container {
+/*! IMPORTANT k display even if close toggle  */
+.fixed-nav .links-container {
   height: auto !important;
-} */
+}
 .nav-header {
   display: flex;
   align-items: center;
