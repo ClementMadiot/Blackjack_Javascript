@@ -74,55 +74,25 @@ const menu = [
 ]
 
 const sectionCenter = document.querySelector('.section-center')
-const filterBtns = document.querySelectorAll('.filter-btn')
 
-// load items
-window.addEventListener('DOMContentLoaded', function () {
-  displayMenu(menu)
-})
+//? With DOMContentLoaded
+window.addEventListener("DOMContentLoaded", function () {
+  let displayMenu = menu.map(function (item) {
 
-///filter item
-filterBtns.forEach((btn) => {
-  btn.addEventListener('click', function (e) {
-    //; dataset -> data-id in html
-    // console.log(e.currentTarget.dataset.id)
-    const category = e.currentTarget.dataset.id
-
-    /// for one category
-    const menuCategory = menu.filter(function (menuItem) {
-      if (menuItem.category === category) {
-        return menuItem
-      }
-    })
-    /// for all category
-    if (category === 'all') {
-      displayMenu(menu)
-    } else {
-      displayMenu(menuCategory)
-    }
-  })
-})
-function displayMenu(menuItems) {
-  /// menuItems -> menu
-  let displayCartMenu = menuItems
-    .map(function (item) {
-      // console.log(item);
-      return `<article class="menu-item">
+    return `<article class="menu-item">
           <img src=${item.img} alt=${item.title} class="photo" />
           <div class="item-info">
-          <header>
+            <header>
               <h4>${item.title}</h4>
               <h4 class="price">$${item.price}</h4>
-              </header>
+            </header>
             <p class="item-text">
-            ${item.desc}
+              ${item.desc}
             </p>
-            </div>
-            </article>`
-    })
-    .join('')
-  sectionCenter.innerHTML = displayCartMenu
-  // console.log(displayCartMenu)
-  // displayMenu()
-
-}
+          </div>
+        </article>`;
+  });
+  displayMenu = displayMenu.join("");
+  console.log(displayMenu);
+  sectionCenter.innerHTML = displayMenu;
+});
