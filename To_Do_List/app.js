@@ -19,6 +19,8 @@ form.addEventListener('submit', addItem)
 //: clear items
 clearBtn.addEventListener('click', clearItems)
 
+const deleteBtn = document.querySelector('.delete-btn')
+
 // ****** FUNCTIONS **********
 function addItem(e) {
   e.preventDefault()
@@ -47,37 +49,48 @@ function addItem(e) {
               <i class="fas fa-trash"></i>
             </button>
           </div>`
+    ///button
+    const deleteBtn = element.querySelector('.delete-btn')
+    const editBtn = element.querySelector('.edit-btn')
+    deleteBtn.addEventListener('click', deleteItem)
+
+    ///append child
+    editBtn.addEventListener('click', editItem)
+
     list.appendChild(element)
 
-    //: display the alert
+    /// display the alert
     displayAlert('item added to the list', 'succes')
     container.classList.add('show-container')
-    //: add localStorage and set back to default
+    /// add localStorage and set back to default
     addToLocalStorage(id, value)
     setBackToDefault()
 
     /// if value is empty and editFlag is false
   } else if (value && editFlag) {
-    console.log('editing')
+    editElement.innerHTML = value
+    displayAlert('value changed', 'success')
   } else {
     displayAlert('please enter value', 'danger')
   }
 }
 
-//: Display alert
+/// Display alert
 function displayAlert(text, action) {
   alert.textContent = text
   alert.classList.add(`alert-${action}`)
 
-  //: Remove alert
+  /// Remove alert
   setTimeout(() => {
     alert.textContent = ''
     alert.classList.remove(`alert-${action}`)
   }, 1000)
 }
-//: Clear Items
+
+/// Clear Items
 function clearItems() {
   const items = document.querySelectorAll('.grocery-item')
+
   if (items.length > 0) {
     items.forEach(function (item) {
       list.removeChild(item)
@@ -85,8 +98,35 @@ function clearItems() {
   }
   container.classList.remove('show-container')
   displayAlert('empty list', 'danger')
+  setBackToDefault()
 }
 
+// ****** Delete function **********
+function deleteItem(e) {
+  const articleElement = e.currentTarget.parentElement.parentElement
+  const id = element.dataset.id
+  list.removeChild(articleElement)
+  if (list.children.length === 0) {
+    container.classList.remove('show-container')
+  }
+  displayAlert('item removed', 'danger')
+  setBackToDefault()
+  /// Remove from localStorage
+  removeFromLocalStorage(id)
+}
+
+// ****** Edit function **********
+function editItem(e) {
+  const articleElement = e.currentTarget.parentElement.parentElement
+
+  /// set edit item (previousElementSibling allowed to access to the 'brother' element of btn-container -> paragraph
+  editElement = e.currentTarget.parentElement.previousElementSibling
+  /// set from value
+  grocery.value = editElement.innerHTML
+  editFlag = true
+  editID = articleElement.dataset.id
+  submitBtn.textContent = 'edit'
+}
 // ****** SET BACK TO DEFAULT **********
 function setBackToDefault() {
   grocery.value = ''
@@ -98,4 +138,5 @@ function setBackToDefault() {
 function addToLocalStorage(id, value) {
   console.log('add')
 }
+function removeFromLocalStorage(id) {}
 // ****** SETUP ITEMS **********
