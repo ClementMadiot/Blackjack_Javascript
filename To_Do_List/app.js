@@ -70,6 +70,9 @@ function addItem(e) {
   } else if (value && editFlag) {
     editElement.innerHTML = value
     displayAlert('value changed', 'success')
+    /// edit localStorage
+    editLocalStorage(editID, value)
+    setBackToDefault()
   } else {
     displayAlert('please enter value', 'danger')
   }
@@ -136,7 +139,17 @@ function setBackToDefault() {
 }
 // ****** LOCAL STORAGE **********
 function addToLocalStorage(id, value) {
-  console.log('add')
+  // const id === id ,const value === value
+  const grocery = { id, value }
+  // get the list's object or if it's empty get an empty array
+  let items = localStorage.getItem('list')
+  ? JSON.parse(localStorage.getItem('list'))
+  : [];
+  console.log(items)
+  items.push(grocery)
+  localStorage.setItem('list', JSON.stringify(items))
 }
 function removeFromLocalStorage(id) {}
+function editLocalStorage(id, value) {}
+
 // ****** SETUP ITEMS **********
